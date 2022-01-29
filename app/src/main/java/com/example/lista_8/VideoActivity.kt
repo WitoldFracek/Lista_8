@@ -3,6 +3,8 @@ package com.example.lista_8
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 
+val DEFAULT_VIDEO = "path"
+
 class VideoActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
