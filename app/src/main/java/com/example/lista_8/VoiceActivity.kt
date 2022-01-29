@@ -36,6 +36,7 @@ lateinit var recordProgress: SeekBar
 class VoiceActivity : AppCompatActivity() {
 
     var mediaPlayer: MediaPlayer? = null
+    var mediaRecorder: MediaRecorder? = null
 
     private var isRecording = false
     private var fileName = ""
@@ -53,12 +54,6 @@ class VoiceActivity : AppCompatActivity() {
         fileName = "${externalCacheDir?.absolutePath}/test_nagrania.3gp"
 
         mediaPlayer = MediaPlayer()
-        mediaRecorder = MediaRecorder().apply {
-            setAudioSource(MediaRecorder.AudioSource.MIC)
-            setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP)
-            setOutputFile(fileName)
-            setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB)
-        }
         
 
 
@@ -85,8 +80,16 @@ class VoiceActivity : AppCompatActivity() {
 
     private fun startRecording() {
 //        val filePath = Environment.getExternalStorageDirectory().toString() + File.separator + getHash() + ".3gpp"
-        mediaRecorder.prepare()
-        mediaRecorder.start()
+        if(mediaRecorder == null){
+            mediaRecorder = MediaRecorder().apply {
+                setAudioSource(MediaRecorder.AudioSource.MIC)
+                setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP)
+                setOutputFile(fileName)
+                setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB)
+                prepare()
+                start()
+            }
+        }
         isRecording = true
     }
 
@@ -155,10 +158,10 @@ class VoiceActivity : AppCompatActivity() {
 
         pauseRecordButton.setOnClickListener {
             isRecording = if(isRecording) {
-                mediaRecorder.pause()
+                mediaRecorder!!.pause()
                 false
             } else {
-                mediaRecorder.resume()
+                mediaRecorder!!.resume()
                 true
             }
             recordButton.isEnabled = false
@@ -168,9 +171,10 @@ class VoiceActivity : AppCompatActivity() {
         }
 
         stopRecordButton.setOnClickListener {
-            with(mediaRecorder) {
-                stop()
-                release()
+            if(mediaRecorder != null){
+                mediaRecorder!!.stop()
+                mediaRecorder!!.release()
+                mediaRecorder = null
             }
             isRecording = false
             recordButton.isEnabled = true
