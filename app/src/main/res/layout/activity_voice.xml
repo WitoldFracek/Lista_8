@@ -100,12 +100,12 @@
             android:text="Zakończ" />
     </LinearLayout>
 
-    <ProgressBar
-        android:id="@+id/voice_progress_bar"
-        style="?android:attr/progressBarStyleHorizontal"
+    <SeekBar
+        android:id="@+id/record_progress_bar"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_weight="1" />
+
 </LinearLayout>
