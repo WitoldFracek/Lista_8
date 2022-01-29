@@ -24,6 +24,12 @@ class MainActivity : AppCompatActivity() {
 
         val playVideoButton: Button = findViewById(R.id.play_video_button)
         playVideoButton.setOnClickListener {
+            val intent = Intent(this, VideoListActivity::class.java)
+            startActivity(intent)
+        }
+
+        val testButton: Button = findViewById(R.id.test_button)
+        testButton.setOnClickListener {
             val intent = Intent(this, PlayVideoActivity::class.java)
             startActivity(intent)
         }

@@ -115,8 +115,8 @@ class VoiceActivity : AppCompatActivity() {
 
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
                 if(!fromUser && !isTrackingDisabled){
-                    val minutes:Int = (mediaPlayer!!.duration.toDouble() / 60000).toInt()
-                    val seconds: Int = (mediaPlayer!!.duration.toDouble() / 1000 - minutes.toDouble() * 60).toInt()
+                    val minutes:Int = (mediaPlayer!!.currentPosition.toDouble() / 60000).toInt()
+                    val seconds: Int = (mediaPlayer!!.currentPosition.toDouble() / 1000 - minutes.toDouble() * 60).toInt()
                     timeText.text = if(seconds < 10){
                         "$fileName\n\n$minutes:0$seconds"
                     } else {
@@ -245,5 +245,10 @@ class VoiceActivity : AppCompatActivity() {
             onBackPressed()
         }
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+    }
+
+    override fun onBackPressed() {
+        mediaPlayer!!.stop()
+        super.onBackPressed()
     }
 }
