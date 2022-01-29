@@ -24,7 +24,7 @@
         android:layout_marginStart="116dp"
         android:layout_marginTop="56dp"
         android:layout_weight="1"
-        android:text="Odtwórz zapisane filmy" />
+        android:text="Lista filmów" />
 
     <Button
         android:id="@+id/test_button"
@@ -33,7 +33,7 @@
         android:layout_marginStart="116dp"
         android:layout_marginTop="56dp"
         android:layout_weight="1"
-        android:text="Odtarzacz" />
+        android:text="Odtwarzacz" />
 
     <Button
         android:id="@+id/record_video_button"
@@ -42,6 +42,6 @@
         android:layout_marginStart="116dp"
         android:layout_marginTop="60dp"
         android:layout_weight="1"
-        android:text="Nagraj filmik" />
+        android:text="Kamera" />
 
 </LinearLayout>

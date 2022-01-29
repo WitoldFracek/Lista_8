@@ -114,7 +114,7 @@ class VoiceActivity : AppCompatActivity() {
             var wasPlaying = false
 
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
-                if(!fromUser && !isTrackingDisabled){
+                if(!fromUser && !isTrackingDisabled && mediaPlayer != null){
                     val minutes:Int = (mediaPlayer!!.currentPosition.toDouble() / 60000).toInt()
                     val seconds: Int = (mediaPlayer!!.currentPosition.toDouble() / 1000 - minutes.toDouble() * 60).toInt()
                     timeText.text = if(seconds < 10){
